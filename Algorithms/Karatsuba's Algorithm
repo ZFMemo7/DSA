@@ -1,0 +1,36 @@
+#for very quick multiplication using recursion
+
+import math
+def karatsuba(x,y):
+    if (x < 10 or y < 10):
+        return x*y
+    else:
+        m = max(len(str(x)), len(str(y)))
+        m2 = m//2
+        
+        Bm2 = 10**m2
+        
+        a = x % Bm2
+        b = y % Bm2
+        c = x // Bm2
+        d = y // Bm2
+        
+        z0 = karatsuba(a,b)
+        z2 = karatsuba(c, d)
+        z1 = karatsuba((a+c),(b+d))
+        
+        ans = (z2 * Bm2**2) + ((z1 - z2 - z0)*Bm2) + (z0)
+        
+        return ans
+    
+def main():
+    print("Welcome to Karatsuba's Algorithm for fast multiplication, please type in any 2 numbers")
+    print("num1: ")
+    x = int(input())
+    print("num2: ")
+    y = int(input())
+    print(karatsuba(x,y))
+
+main()
+    
+    
